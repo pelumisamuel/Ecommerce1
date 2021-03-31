@@ -1,7 +1,7 @@
-import PropTypes from 'prop-types'
+//import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import {Row, Col, Image, ListGroup, Card, Button, ListGroupItem } from 'react-bootstrap'
-import products from '../products'
+//import products from '../products'
 import Ratings from '../Components/Ratings'
 import {useEffect, useState} from "react"
 import axios from "axios"
@@ -21,7 +21,7 @@ const ProductScreen = ({match}) => {
 
     fetchData()
 
-    }, [])
+    }, [match])
 
    // const product = products.find((p) => p._id === match.params.id )
 
