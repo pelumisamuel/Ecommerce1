@@ -2,8 +2,12 @@ import { Card } from "react-bootstrap"
 import Ratings from "./Ratings";
 import { Link } from 'react-router-dom'
 
+//import products from "../products";
+
 
 const Product = ({product}) => {
+  
+
     return (
     <Card className='p-3 my-3 rounded'>
         
