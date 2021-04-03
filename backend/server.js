@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import colors from 'colors'
 import productRoutes from './Routes/productRoutes.js'
+import { notFound, errorHandler } from './Middlewares/errorMiddleware.js'
 
 dotenv.config()
 
@@ -20,6 +21,10 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/products', productRoutes)
+
+//error middleware
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
