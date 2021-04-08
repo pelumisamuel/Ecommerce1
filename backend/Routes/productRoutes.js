@@ -1,6 +1,7 @@
 import express, { Router } from 'express'
 import Product from '../Models/productModel.js'
 import asyncHandler from 'express-async-handler'
+//import { Error } from 'mongoose'
 const router = Router()
 
 router.get(
@@ -25,6 +26,7 @@ router.get(
     //   res.status(404).json('I dont have that')
     //   console.log(error)
     // }
+
     if (product) {
       res.json(product)
     } else {
