@@ -5,6 +5,7 @@ import {
   PRODUCT_LIST_FAIL,
 } from '../Constants/productListConstants'
 
+//double arrow function possible because of thunk
 export const listProducts = () => async (dispatch) => {
   try {
     dispatch({ type: PRODUCT_LIST_REQUEST })
