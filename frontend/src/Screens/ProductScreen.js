@@ -39,7 +39,7 @@ const ProductScreen = ({ history, match }) => {
   }, [match, dispatch])
 
   const addToCartHandler = () => {
-    history.push(`/cart/${match.params.id}/${qty}`)
+    history.push(`/cart/${match.params.id}?qty=${qty}`)
   }
 
   // const product = products.find((p) => p._id === match.params.id )
