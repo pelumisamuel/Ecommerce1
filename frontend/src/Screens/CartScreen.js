@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../Components/Message'
-import { addToCart } from '../Actions/cartActions'
+import { addToCart, removeFromCart } from '../Actions/cartActions'
 import Loader from '../Components/Loader'
 
 const CartScreen = ({ match, location, history }) => {
@@ -22,8 +22,8 @@ const CartScreen = ({ match, location, history }) => {
     }
   }, [productID, dispatch, qty])
 
-  const removeFromCart = (id) => {
-    console.log('delete..' + id)
+  const removeFromCartFunc = (id) => {
+    dispatch(removeFromCart(id))
   }
 
   const CheckOutHandler = () => {
@@ -69,7 +69,7 @@ const CartScreen = ({ match, location, history }) => {
                     <Button
                       type='button'
                       variant='light'
-                      onClick={() => removeFromCart(item.product)}>
+                      onClick={() => removeFromCartFunc(item.product)}>
                       {'       '}
                       <i className='fas fa-trash' />
                     </Button>
@@ -89,7 +89,10 @@ const CartScreen = ({ match, location, history }) => {
                 subTotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
                 items
               </h2>
-              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+              $
+              {cartItems
+                .reduce((acc, item) => acc + item.qty * item.price, 0)
+                .toFixed(2)}
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
