@@ -98,7 +98,7 @@ const ProductScreen = ({ history, match }) => {
                     </Col>
                   </Row>
                 </ListGroupItem>
-                {product.countInStock && (
+                {product.countInStock !== 0 && (
                   <ListGroupItem>
                     <Row>
                       <Col>Qty</Col>

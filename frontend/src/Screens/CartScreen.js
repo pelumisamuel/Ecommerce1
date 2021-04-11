@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button } from 'react-bootstrap'
+import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../Components/Message'
 import { addToCart } from '../Actions/cartActions'
 import Loader from '../Components/Loader'
@@ -26,6 +26,9 @@ const CartScreen = ({ match, location, history }) => {
     console.log('delete..' + id)
   }
 
+  const CheckOutHandler = () => {
+    history.push('/login?redirect=shippng')
+  }
   return (
     <Row>
       <Col md={8}>
@@ -67,7 +70,7 @@ const CartScreen = ({ match, location, history }) => {
                       type='button'
                       variant='light'
                       onClick={() => removeFromCart(item.product)}>
-                      {' '}
+                      {'       '}
                       <i className='fas fa-trash' />
                     </Button>
                   </Col>
@@ -77,7 +80,30 @@ const CartScreen = ({ match, location, history }) => {
           </ListGroup>
         )}
       </Col>
-      <Col md={2}></Col>
+
+      <Col md={4}>
+        <Card>
+          <ListGroup variant='flush'>
+            <ListGroup.Item>
+              <h2>
+                subTotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
+                items
+              </h2>
+              ${cartItems.reduce((acc, item) => acc + item.qty * item.price, 0)}
+            </ListGroup.Item>
+            <ListGroup.Item>
+              <Button
+                type='Button'
+                className='btn-block'
+                disabled={cartItems.length === 0}
+                onClick={CheckOutHandler}>
+                {' '}
+                Proceed to checkout
+              </Button>
+            </ListGroup.Item>
+          </ListGroup>
+        </Card>
+      </Col>
     </Row>
   )
 }
