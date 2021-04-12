@@ -27,4 +27,22 @@ const getUser = asyncHandler(async (req, res) => {
   }
 })
 
-export { getUser }
+const getUserProfile = asyncHandler(async (req, res) => {
+  //console.log(req)
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    res.json({
+      _id: user._id,
+      name: user.name,
+      email: user.email,
+      isAdmin: user.isAdmin,
+    })
+  } else {
+    res.status(404).json('request not found')
+
+    throw new Error('email or username is invalid')
+  }
+})
+
+export { getUser, getUserProfile }
