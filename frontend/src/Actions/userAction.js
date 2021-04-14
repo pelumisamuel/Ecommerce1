@@ -5,7 +5,7 @@ import {
   USER_LOGIN_SUCCESS,
 } from '../Constants/usersConstants'
 
-export const userAction = (email, password) => async (dispatch, getState) => {
+export const loginAction = (email, password) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_LOGIN_REQUEST })
 
