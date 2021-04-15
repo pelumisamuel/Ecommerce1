@@ -81,4 +81,31 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
-export { getUser, getUserProfile, registerUser }
+const updateUserProfile = asyncHandler(async (req, res) => {
+  //console.log(req)
+  const user = await User.findById(req.user._id)
+
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    if (req.body.password) {
+      user.password = req.body.password
+    }
+
+    const updatedUSer = await user.save()
+
+    res.json({
+      _id: updatedUSer.id,
+      name: updatedUSer.name,
+      email: updatedUSer.email,
+      isAdmin: updatedUSer.isAdmin,
+      token: generateToken(updatedUSer.id),
+    })
+  } else {
+    res.status(404)
+
+    throw new Error('incorrect update details')
+  }
+})
+
+export { getUser, getUserProfile, registerUser, updateUserProfile }
