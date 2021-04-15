@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
 import Message from '../Components/Message'
 import { addToCart, removeFromCart } from '../Actions/cartActions'
-import Loader from '../Components/Loader'
 
 const CartScreen = ({ match, location, history }) => {
   const productID = match.params.id
