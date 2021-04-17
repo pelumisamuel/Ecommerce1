@@ -30,7 +30,10 @@ export const loginAction = (email, password) => async (dispatch, getState) => {
       type: USER_LOGIN_SUCCESS,
       payload: data,
     })
-    localStorage.setItem('userInfo', JSON.stringify(getState(data)))
+    localStorage.setItem(
+      'userInfo',
+      JSON.stringify(getState().userLogin.userInfo)
+    )
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,

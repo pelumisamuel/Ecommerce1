@@ -5,10 +5,11 @@ import { logoutAction } from '../Actions/userAction'
 
 const Header = () => {
   const dispatch = useDispatch()
-  const userLogin = useSelector((state) => state.user)
-  const { userInfo } = userLogin
+  const { userLogin, userInfo } = useSelector((state) => state.userLogin)
+  const users = useSelector((state) => state.userLogin)
+  //const { userInfo } = userLogin
   console.log(userLogin)
-  // console.log(userInfo.name)
+  console.log(users)
 
   const logoutHandler = () => {
     dispatch(logoutAction())
