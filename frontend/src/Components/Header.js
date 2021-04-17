@@ -7,6 +7,8 @@ const Header = () => {
   const dispatch = useDispatch()
   const userLogin = useSelector((state) => state.user)
   const { userInfo } = userLogin
+  console.log(userLogin)
+  // console.log(userInfo.name)
 
   const logoutHandler = () => {
     dispatch(logoutAction())
