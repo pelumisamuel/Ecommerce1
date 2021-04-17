@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
+
 import { Form, Button, Row, Col } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import FormContainer from '../Components/FormContainer'
-import { userUpdateAction } from '../Actions/userAction'
+
+import {
+  userUpdateAction,
+  userUpdateProfileAction,
+} from '../Actions/userAction'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
 
@@ -22,7 +25,6 @@ const ProfileScreen = ({ location, history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
-  console.log(userUpdate)
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
@@ -41,7 +43,7 @@ const ProfileScreen = ({ location, history }) => {
     if (password !== confirmPassword) {
       setMessage('Password do not match')
     } else {
-      dispatch(userUpdateAction('profile'))
+      dispatch(userUpdateProfileAction({ id: user._id, name, email, password }))
     }
   }
 
@@ -97,7 +99,7 @@ const ProfileScreen = ({ location, history }) => {
           </Button>
         </Form>
       </Col>
-      <Col md={9}></Col>
+      <Col md={9}>User orders</Col>
     </Row>
   )
 }
