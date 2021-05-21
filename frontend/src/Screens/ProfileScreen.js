@@ -22,6 +22,9 @@ const ProfileScreen = ({ location, history }) => {
   const userUpdate = useSelector((state) => state.userUpdate)
   const { loading, error, user } = userUpdate
 
+  const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
+  const { success } = userUpdateProfile
+
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
@@ -44,6 +47,8 @@ const ProfileScreen = ({ location, history }) => {
       setMessage('Password do not match')
     } else {
       dispatch(userUpdateProfileAction({ id: user._id, name, email, password }))
+      setPassword('')
+      setConfirmPassword('')
     }
   }
 
@@ -53,6 +58,7 @@ const ProfileScreen = ({ location, history }) => {
         <h1>Update your details</h1>
         {error && <Message variant='danger'>{error}</Message>}
         {message && <Message variant='danger'>{message}</Message>}
+        {success && <Message variant='success'>update Successful</Message>}
         {loading && <Loader />}
 
         <Form onSubmit={submitHandler}>
