@@ -1,14 +1,14 @@
-import { Container, Navbar, Nav, NavDropdown } from "react-bootstrap";
-import { LinkContainer } from "react-router-bootstrap";
-import { useDispatch, useSelector } from "react-redux";
-import { logoutAction } from "../Actions/userAction";
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutAction } from '../Actions/userAction'
 
 const Header = () => {
-  const dispatch = useDispatch();
-  const { userLogin, userInfo } = useSelector((state) => state.userLogin);
-  const users = useSelector((state) => state.userLogin);
+  const dispatch = useDispatch()
+  const { userLogin, userInfo } = useSelector((state) => state.userLogin)
+  const users = useSelector((state) => state.userLogin)
   //const userLogin = useSelector((state) => state.userLogin);
-  const { userInfoUpdate } = useSelector((state) => state.userUpdateProfile);
+  const { userInfoUpdate } = useSelector((state) => state.userUpdateProfile)
   // if (userInfoUpdate) {
   //   let userInfo = userInfoUpdate;
   // }
@@ -22,12 +22,12 @@ const Header = () => {
   //console.log(name);
   //const { userInfo } = userLogin
   //console.log(userLogin);
-  console.log(users);
+  console.log(users)
 
   const logoutHandler = () => {
-    dispatch(logoutAction());
-    console.log(userLogin);
-  };
+    dispatch(logoutAction())
+    console.log(userLogin)
+  }
 
   return (
     // test
@@ -70,7 +70,7 @@ const Header = () => {
         </Container>
       </Navbar>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

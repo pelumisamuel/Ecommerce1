@@ -26,18 +26,19 @@ const CartScreen = ({ match, location, history }) => {
   }
 
   const CheckOutHandler = () => {
-    history.push('/login?redirect=shippng')
+    history.push('/login?redirect=shipping')
   }
+
   return (
     <Row>
       <Col md={8}>
         <h1>Shopping Cart</h1>
         {cartItems.length === 0 ? (
           <Message>
-            Your cart is empty<Link to='/'> Go Back</Link>
+            Your cart is empty<Link to="/"> Go Back</Link>
           </Message>
         ) : (
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             {cartItems.map((item) => (
               <ListGroup.Item key={item.product}>
                 <Row>
@@ -50,13 +51,14 @@ const CartScreen = ({ match, location, history }) => {
                   <Col md={2}>${item.price}</Col>
                   <Col md={2}>
                     <Form.Control
-                      as='select'
+                      as="select"
                       value={item.qty}
                       onChange={(e) =>
                         dispatch(
                           addToCart(item.product, Number(e.target.value))
                         )
-                      }>
+                      }
+                    >
                       {[...Array(item.countInStock).keys()].map((num) => (
                         <option key={num + 1} value={num + 1}>
                           {num + 1}
@@ -66,11 +68,12 @@ const CartScreen = ({ match, location, history }) => {
                   </Col>
                   <Col md={2}>
                     <Button
-                      type='button'
-                      variant='light'
-                      onClick={() => removeFromCartFunc(item.product)}>
+                      type="button"
+                      variant="light"
+                      onClick={() => removeFromCartFunc(item.product)}
+                    >
                       {'       '}
-                      <i className='fas fa-trash' />
+                      <i className="fas fa-trash" />
                     </Button>
                   </Col>
                 </Row>
@@ -82,7 +85,7 @@ const CartScreen = ({ match, location, history }) => {
 
       <Col md={4}>
         <Card>
-          <ListGroup variant='flush'>
+          <ListGroup variant="flush">
             <ListGroup.Item>
               <h2>
                 subTotal ({cartItems.reduce((acc, item) => acc + item.qty, 0)})
@@ -95,10 +98,11 @@ const CartScreen = ({ match, location, history }) => {
             </ListGroup.Item>
             <ListGroup.Item>
               <Button
-                type='Button'
-                className='btn-block'
+                type="Button"
+                className="btn-block"
                 disabled={cartItems.length === 0}
-                onClick={CheckOutHandler}>
+                onClick={CheckOutHandler}
+              >
                 {' '}
                 Proceed to checkout
               </Button>
