@@ -1,9 +1,10 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+
 import { useDispatch, useSelector } from 'react-redux'
-import { Row, Col, ListGroup, Image, Form, Button, Card } from 'react-bootstrap'
+import { Form, Button } from 'react-bootstrap'
 import { saveShippingAddress } from '../Actions/cartActions'
 import FormContainer from '../Components/FormContainer'
+import CheckOutSteps from '../Components/CheckOutSteps'
 
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
@@ -25,6 +26,7 @@ const ShippingScreen = ({ history }) => {
 
   return (
     <FormContainer>
+      <CheckOutSteps step1 step2 />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group controlId="address">
