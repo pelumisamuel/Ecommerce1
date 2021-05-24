@@ -8,6 +8,14 @@ import CheckOutSteps from '../Components/CheckOutSteps'
 
 const ShippingScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
+  ;(() => {
+    if (!userInfo) {
+      history.push('/login?redirect=shipping')
+    }
+  })()
 
   const { shippingAddress } = cart
 

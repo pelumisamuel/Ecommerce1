@@ -10,9 +10,12 @@ const PaymentScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
 
   const { shippingAddress } = cart
-  if (!shippingAddress) {
-    history.push('/shipping')
-  }
+
+  ;(() => {
+    if (!shippingAddress.address) {
+      history.push('/shipping')
+    }
+  })()
 
   const [paymentMethod, setPaymentMethod] = useState('paypal')
 
