@@ -40,17 +40,19 @@ const PaymentScreen = ({ history }) => {
             label="Paypal or credit card"
             id="paypal"
             value="paypal"
+            name="payment"
             checked
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
 
-          {/* <Form.Check
+          <Form.Check
             type="radio"
             label="Stripe"
             value="stripe"
             id="stripe"
+            name="payment"
             onChange={(e) => setPaymentMethod(e.target.value)}
-          ></Form.Check> */}
+          ></Form.Check>
         </Form.Group>
         <Button type="submit" variant="primary" className="btn-block">
           Continue
