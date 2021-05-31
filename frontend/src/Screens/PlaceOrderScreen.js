@@ -6,9 +6,14 @@ import Message from '../Components/Message'
 
 const PlaceOrderScreen = () => {
   const cart = useSelector((state) => state.cart)
-  const { cartItems } = cart
+  // const { cartItems } = cart
 
   // calculate Prices
+
+  // add decimals function
+  // const addDecimal = (num) => {
+  //   return (Math.round(num * 100) / 100).toFixed(2)
+  // }
 
   cart.itemsPrice = cart.cartItems
     .reduce((acc, item) => acc + item.price * item.qty, 0)
@@ -129,7 +134,7 @@ const PlaceOrderScreen = () => {
                 <Button
                   type='button'
                   className='btn-block'
-                  disable={cart.Itemsprice === 0}
+                  disabled={cart.itemsPrice === 0}
                   onClick={placeOrderHandler}
                 >
                   Place Order

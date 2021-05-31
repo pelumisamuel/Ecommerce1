@@ -8,6 +8,7 @@ import dotenv from 'dotenv'
 import connectDB from './config/db.js'
 import colors from 'colors'
 import productRoutes from './Routes/productRoutes.js'
+import orderRoutes from './Routes/orderRoutes.js'
 import userRoutes from './Routes/userRoutes.js'
 import { notFound, errorHandler } from './Middlewares/errorMiddleware.js'
 
@@ -25,6 +26,7 @@ app.get('/', (req, res) => {
 
 app.use('/api/users', userRoutes)
 app.use('/api/products', productRoutes)
+app.use('/api/orders', orderRoutes)
 
 //error middleware
 app.use(notFound)
