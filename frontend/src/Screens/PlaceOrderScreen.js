@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+// import { useEffect } from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -59,9 +59,10 @@ const PlaceOrderScreen = ({ history }) => {
         totalPrice: cart.totalPrice,
       })
     )
-    if (success) {
-      history.push(`/order/${order._id}`)
-    }
+  }
+
+  if (success) {
+    history.push(`/order/${order._id}`)
   }
 
   return (
