@@ -17,7 +17,7 @@ const PaymentScreen = ({ history }) => {
     }
   })()
 
-  const [paymentMethod, setPaymentMethod] = useState('paypal')
+  const [paymentMethod, setPaymentMethod] = useState(cart.paymentMethod)
 
   const dispatch = useDispatch()
 
@@ -57,6 +57,7 @@ const PaymentScreen = ({ history }) => {
             value='stripe'
             id='stripe'
             name='payment'
+            checked={paymentMethod === 'stripe' ? true : false}
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
           <Form.Check
@@ -65,6 +66,7 @@ const PaymentScreen = ({ history }) => {
             value='paystack'
             id='paystack'
             name='payment'
+            checked={paymentMethod === 'paystack' ? true : false}
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
         </Form.Group>
