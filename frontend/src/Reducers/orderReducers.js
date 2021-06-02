@@ -1,4 +1,7 @@
 import {
+  GET_ORDER_FAIL,
+  GET_ORDER_REQUEST,
+  GET_ORDER_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -19,6 +22,33 @@ export const orderCreateReducer = (state = {}, action) => {
       }
 
     case ORDER_CREATE_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    default:
+      return state
+  }
+}
+
+export const orderDetailsReducer = (
+  state = { orderItems: [], shippingAddress: {} },
+  action
+) => {
+  switch (action.type) {
+    case GET_ORDER_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      }
+
+    case GET_ORDER_SUCCESS:
+      return {
+        loading: false,
+        order: action.payload,
+      }
+
+    case GET_ORDER_FAIL:
       return {
         loading: false,
         error: action.payload,

@@ -26,11 +26,17 @@ const PaymentScreen = ({ history }) => {
     dispatch(savePaymentMethod(paymentMethod))
     console.log('register clicked')
     history.push('/placeorder')
+    console.log(paymentMethod)
   }
 
   return (
     <FormContainer>
-      <CheckOutSteps step1 step2 step3 />
+      <CheckOutSteps
+        step1
+        step2
+        step3={true}
+        step4={cart.paymentMethod !== paymentMethod ? false : true}
+      />
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
         <Form.Group>
