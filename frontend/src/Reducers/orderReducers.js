@@ -2,6 +2,10 @@ import {
   GET_ORDER_FAIL,
   GET_ORDER_REQUEST,
   GET_ORDER_SUCCESS,
+  GET_PAY_FAIL,
+  GET_PAY_REQUEST,
+  GET_PAY_RESET,
+  GET_PAY_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -53,6 +57,32 @@ export const orderDetailsReducer = (
         loading: false,
         error: action.payload,
       }
+    default:
+      return state
+  }
+}
+
+export const orderPayReducer = (state = {}, action) => {
+  switch (action.type) {
+    case GET_PAY_REQUEST:
+      return {
+        loading: true,
+      }
+
+    case GET_PAY_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+      }
+
+    case GET_PAY_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
+    case GET_PAY_RESET: {
+      return {}
+    }
     default:
       return state
   }
