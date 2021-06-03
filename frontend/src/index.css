@@ -16,3 +16,6 @@ h3 {
 .rating {
   margin: 0.1rem;
 }
+strong {
+  font-weight: bold;
+}
