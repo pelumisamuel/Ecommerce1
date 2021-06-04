@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import axios from 'axios'
 import { Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -21,6 +22,12 @@ const OrderScreen = ({ match }) => {
   }
 
   useEffect(() => {
+    // const addPayPalScript = async () => {
+    //   const { data: clientId } = await axios.get('/api/config/paypal')
+    //   console.log(clientId)
+    // }
+    // addPayPalScript()
+
     dispatch(getOrder(orderId))
   }, [dispatch, orderId])
 
@@ -41,7 +48,7 @@ const OrderScreen = ({ match }) => {
               </p>
               <p>
                 <strong>Email:</strong>{' '}
-                <a href={`mailto:${order.user.email}`}>{order.user.email}</a>
+                {/* <a href={`mailto:${order.user.email}`}>{order.user.email}</a> */}
               </p>
               <p>
                 <strong>Address:</strong>
