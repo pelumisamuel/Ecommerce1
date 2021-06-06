@@ -23,7 +23,7 @@ export const addOrderItems = asyncHandler(async (req, res) => {
   } else {
     const order = new Order({
       orderItems,
-      user: req.user._id,
+      user: req.user,
       shippingAddress,
       paymentMethod,
       itemsPrice,
@@ -56,7 +56,7 @@ export const getOrderById = asyncHandler(async (req, res) => {
 })
 
 export const updateOrderToPaid = asyncHandler(async (req, res) => {
-  const order = await Order.findById(req.params.id)
+  const order = await await Order.findById(req.params.id)
 
   if (order) {
     order.isPaid = true

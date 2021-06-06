@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { createOrder } from '../Actions/orderActions'
+import { createOrder, getOrder } from '../Actions/orderActions'
 import CheckOutSteps from '../Components/CheckOutSteps'
 import Message from '../Components/Message'
 
@@ -13,11 +13,20 @@ const PlaceOrderScreen = ({ history }) => {
   const orderCreate = useSelector((state) => state.orderCreate)
   const { order, success, error } = orderCreate
 
-  useEffect(() => {
-    if (success) {
-      history.push(`/order/${order._id}`)
-    }
-  }, [success, history, order])
+  const orderDetails = useSelector((state) => state.orderDetails)
+
+  const dispatchOrder = () =>
+    dispatch(
+      createOrder({
+        orderItems: cart.cartItems,
+        shippingAddress: cart.shippingAddress,
+        paymentMethod: cart.paymentMethod,
+        itemsPrice: cart.itemsPrice,
+        taxPrice: cart.taxPrice,
+        shippingPrice: cart.shippingPrice,
+        totalPrice: cart.totalPrice,
+      })
+    )
 
   // calculate Prices
 
@@ -48,18 +57,17 @@ const PlaceOrderScreen = ({ history }) => {
   // on submit function
   const placeOrderHandler = (e) => {
     e.preventDefault()
-    dispatch(
-      createOrder({
-        orderItems: cart.cartItems,
-        shippingAddress: cart.shippingAddress,
-        paymentMethod: cart.paymentMethod,
-        itemsPrice: cart.itemsPrice,
-        taxPrice: cart.taxPrice,
-        shippingPrice: cart.shippingPrice,
-        totalPrice: cart.totalPrice,
-      })
-    )
+    dispatchOrder()
   }
+
+  useEffect(() => {
+    if (order) {
+      dispatchOrder()
+      history.push(`/order/${order._id}`)
+      window.location.reload()
+    }
+    //   dispatchOrder()
+  }, [success, history, order])
 
   // if (success) {
   //   history.push(`/order/${order._id}`)
