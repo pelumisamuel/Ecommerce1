@@ -13,6 +13,6 @@ router.route('/').post(protect, addOrderItems)
 
 //2
 router.route('/:id').get(protect, getOrderById)
-router.route('/:id/pay').get(protect, updateOrderToPaid)
+router.route('/:id/pay').put(protect, updateOrderToPaid)
 
 export default router

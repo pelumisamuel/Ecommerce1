@@ -8,9 +8,8 @@ import { getOrder, payOrder } from '../Actions/orderActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import { GET_PAY_RESET } from '../Constants/orderConstants'
-import { createOrder } from '../Actions/orderActions'
 
-const OrderScreen = ({ match, history }) => {
+const OrderScreen = ({ match }) => {
   const orderId = match.params.id
   const [sdkReady, setSdkReady] = useState(false)
 
@@ -21,7 +20,9 @@ const OrderScreen = ({ match, history }) => {
 
   const orderDetails = useSelector((state) => state.orderDetails)
   const { order, loading, error } = orderDetails
-  const orderCreate = useSelector((state) => state.orderCreate)
+
+  // try isLoading to change it state
+  // const orderCreate = useSelector((state) => state.orderCreate)
 
   const orderPay = useSelector((state) => state.orderPay)
   const { success: successPay, loading: loadingPay, error: errorPay } = orderPay
@@ -45,8 +46,6 @@ const OrderScreen = ({ match, history }) => {
       document.body.appendChild(script)
     }
 
-    //console.log(createOrder, order.totalPrice)
-
     //check if order is loading or payment is sucessful before dispacthing
 
     // if (!order|| successPay){} works but i prefer using 'loading'
@@ -54,29 +53,24 @@ const OrderScreen = ({ match, history }) => {
     if (!order || successPay) {
       dispatch({ type: GET_PAY_RESET })
       dispatch(getOrder(orderId))
+      // } else if (successPay) {
+      //   dispatch({ type: GET_PAY_RESET })
+      //   dispatch(getOrder(orderId))
     } else if (!order.isPaid) {
       // check if the paypal script is there
+
       if (!window.paypal) {
         addPayPalScript()
       } else {
         setSdkReady(true)
       }
     }
-  }, [
-    dispatch,
-    orderId,
-    successPay,
-    order,
-    loading,
-    history,
-    orderCreate,
-    cart,
-  ])
+  }, [dispatch, orderId, successPay, order, loading, cart])
 
-  // const successPaymentHandler = (paymentResult) => {
-  //   console.log(paymentResult)
-  //   dispatch(payOrder(orderId, paymentResult))
-  // }
+  const successPaymentHandler = (paymentResult) => {
+    console.log(paymentResult)
+    dispatch(payOrder(orderId, paymentResult))
+  }
 
   return loading ? (
     <Loader />
@@ -95,7 +89,7 @@ const OrderScreen = ({ match, history }) => {
               </p>
               <p>
                 <strong>Email:</strong>{' '}
-                {/* <a href={`mailto:${order.user.email}`}>{order.user.email}</a> */}
+                {<a href={`mailto:${order.user.email}`}>{order.user.email}</a>}
               </p>
               <p>
                 <strong>Address:</strong>
@@ -196,11 +190,10 @@ const OrderScreen = ({ match, history }) => {
                   {!sdkReady ? (
                     <Loader />
                   ) : (
-                    // <PayPalButton
-                    //   amount={order.totalPrice}
-                    //   onSuccess={successPaymentHandler}
-                    // ></PayPalButton>
-                    console.log('test')
+                    <PayPalButton
+                      amount={order.totalPrice}
+                      onSuccess={successPaymentHandler}
+                    />
                   )}
                 </ListGroup.Item>
               )}

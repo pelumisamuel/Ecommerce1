@@ -2,7 +2,7 @@ import { useEffect } from 'react'
 import { Button, Card, Col, Image, ListGroup, Row } from 'react-bootstrap'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { createOrder, getOrder } from '../Actions/orderActions'
+import { createOrder } from '../Actions/orderActions'
 import CheckOutSteps from '../Components/CheckOutSteps'
 import Message from '../Components/Message'
 
@@ -11,7 +11,7 @@ const PlaceOrderScreen = ({ history }) => {
   const cart = useSelector((state) => state.cart)
   // const { cartItems } = cart
   const orderCreate = useSelector((state) => state.orderCreate)
-  const { order, success, error } = orderCreate
+  const { order, error } = orderCreate
 
   const orderDetails = useSelector((state) => state.orderDetails)
 
@@ -39,7 +39,7 @@ const PlaceOrderScreen = ({ history }) => {
     .reduce((acc, item) => acc + item.price * item.qty, 0)
     .toFixed(2)
 
-  cart.shippingPrice = cart.Itemsprice > 100 ? 0 : 100
+  cart.shippingPrice = cart.Itemsprice > 100 ? 0 : 50
 
   cart.taxPrice = Number((0.15 * cart.itemsPrice).toFixed(2))
 
@@ -62,16 +62,12 @@ const PlaceOrderScreen = ({ history }) => {
 
   useEffect(() => {
     if (order) {
-      dispatchOrder()
+      //dispatchOrder()
       history.push(`/order/${order._id}`)
       window.location.reload()
     }
     //   dispatchOrder()
-  }, [success, history, order])
-
-  // if (success) {
-  //   history.push(`/order/${order._id}`)
-  // }
+  }, [history, order])
 
   return (
     <>

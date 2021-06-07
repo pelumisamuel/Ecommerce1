@@ -73,7 +73,7 @@ export const getOrder = (id) => async (dispatch, getState) => {
 }
 
 export const payOrder =
-  (orderID, paymentResult) => async (dispatch, getState) => {
+  (orderId, paymentResult) => async (dispatch, getState) => {
     try {
       dispatch({ type: GET_PAY_REQUEST })
 
@@ -88,8 +88,8 @@ export const payOrder =
           Authorization: `Bearer ${userInfo.token}`,
         },
       }
-      const { data } = await axios.post(
-        `/api/orders/${orderID}`,
+      const { data } = await axios.put(
+        `/api/orders/${orderId}/pay`,
         paymentResult,
         config
       )
@@ -97,6 +97,7 @@ export const payOrder =
         type: GET_PAY_SUCCESS,
         payload: data,
       })
+      console.log(data)
     } catch (error) {
       dispatch({
         type: GET_PAY_FAIL,
