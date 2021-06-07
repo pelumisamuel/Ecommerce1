@@ -12,6 +12,7 @@ const router = Router()
 router.route('/').post(protect, addOrderItems)
 
 //2
+router.route('/myorders').get(protect, getOrderById)
 router.route('/:id').get(protect, getOrderById)
 router.route('/:id/pay').put(protect, updateOrderToPaid)
 
