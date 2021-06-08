@@ -6,6 +6,9 @@ import {
   GET_PAY_REQUEST,
   GET_PAY_RESET,
   GET_PAY_SUCCESS,
+  GET_USER_ORDERS_FAIL,
+  GET_USER_ORDERS_REQUEST,
+  GET_USER_ORDERS_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -83,6 +86,29 @@ export const orderPayReducer = (state = {}, action) => {
     case GET_PAY_RESET: {
       return {}
     }
+    default:
+      return state
+  }
+}
+
+export const getUserOrdersReducer = (state = { orders: [] }, action) => {
+  switch (action.type) {
+    case GET_USER_ORDERS_REQUEST:
+      return {
+        loading: true,
+      }
+
+    case GET_USER_ORDERS_SUCCESS:
+      return {
+        loading: false,
+        orders: action.payload,
+      }
+
+    case GET_USER_ORDERS_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      }
     default:
       return state
   }

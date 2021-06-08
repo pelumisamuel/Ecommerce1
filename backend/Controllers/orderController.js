@@ -80,12 +80,12 @@ export const updateOrderToPaid = asyncHandler(async (req, res) => {
 // @access Private
 
 export const getMyOrders = asyncHandler(async (req, res) => {
-  const orders = await Order.findById({ user: req.user.id })
+  const orders = await Order.find({ user: req.user.id })
 
   if (orders) {
     res.json(orders)
   } else {
     res.status(404)
-    throw new Error('order not found')
+    throw new Error('orders not found')
   }
 })

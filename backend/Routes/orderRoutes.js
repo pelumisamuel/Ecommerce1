@@ -3,6 +3,7 @@ import {
   addOrderItems,
   getOrderById,
   updateOrderToPaid,
+  getMyOrders,
 } from '../Controllers/orderController.js'
 import { protect } from '../Middlewares/authMiddlewares.js'
 
@@ -12,7 +13,7 @@ const router = Router()
 router.route('/').post(protect, addOrderItems)
 
 //2
-router.route('/myorders').get(protect, getOrderById)
+router.route('/myorders').get(protect, getMyOrders)
 router.route('/:id').get(protect, getOrderById)
 router.route('/:id/pay').put(protect, updateOrderToPaid)
 

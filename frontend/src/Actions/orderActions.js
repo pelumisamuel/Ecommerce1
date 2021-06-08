@@ -6,6 +6,9 @@ import {
   GET_PAY_FAIL,
   GET_PAY_REQUEST,
   GET_PAY_SUCCESS,
+  GET_USER_ORDERS_FAIL,
+  GET_USER_ORDERS_REQUEST,
+  GET_USER_ORDERS_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
   ORDER_CREATE_SUCCESS,
@@ -97,7 +100,6 @@ export const payOrder =
         type: GET_PAY_SUCCESS,
         payload: data,
       })
-      console.log(data)
     } catch (error) {
       dispatch({
         type: GET_PAY_FAIL,
@@ -108,3 +110,33 @@ export const payOrder =
       })
     }
   }
+
+export const getUserOrders = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: GET_USER_ORDERS_REQUEST })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+    //console.log(user)
+
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const { data } = await axios.get(`/api/orders/myorders`, config)
+    dispatch({
+      type: GET_USER_ORDERS_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: GET_USER_ORDERS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
