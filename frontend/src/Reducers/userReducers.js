@@ -1,4 +1,5 @@
 import {
+  USER_DETAILS_RESET,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
   USER_LOGIN_SUCCESS,
@@ -50,6 +51,8 @@ export const userUpdateReducer = (state = { user: {} }, action) => {
       return { loading: false, user: action.payload }
     case USER_UPDATE_FAIL:
       return { loading: false, error: action.payload }
+    case USER_DETAILS_RESET:
+      return { user: {} }
     default:
       return state
   }

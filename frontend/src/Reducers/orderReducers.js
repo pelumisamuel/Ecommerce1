@@ -8,6 +8,7 @@ import {
   GET_PAY_SUCCESS,
   GET_USER_ORDERS_FAIL,
   GET_USER_ORDERS_REQUEST,
+  GET_USER_ORDERS_RESET,
   GET_USER_ORDERS_SUCCESS,
   ORDER_CREATE_FAIL,
   ORDER_CREATE_REQUEST,
@@ -109,6 +110,8 @@ export const getUserOrdersReducer = (state = { orders: [] }, action) => {
         loading: false,
         error: action.payload,
       }
+    case GET_USER_ORDERS_RESET:
+      return { orders: [] }
     default:
       return state
   }
