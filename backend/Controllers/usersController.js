@@ -81,6 +81,10 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 })
 
+// *** User profile update
+// update user profile
+// 1. from route put api/users/profile
+// 2 access = Private
 const updateUserProfile = asyncHandler(async (req, res) => {
   //console.log(req)
   const user = await User.findById(req.user._id)
@@ -108,4 +112,16 @@ const updateUserProfile = asyncHandler(async (req, res) => {
   }
 })
 
-export { getUser, getUserProfile, registerUser, updateUserProfile }
+// *** get all User details for admin
+
+// 1. from route get /api/users
+// 2 access = Private
+
+const getUsers = asyncHandler(async (req, res) => {
+  //console.log(req)
+  const users = await User.find({})
+
+  res.json(users)
+})
+
+export { getUser, getUserProfile, registerUser, updateUserProfile, getUsers }
