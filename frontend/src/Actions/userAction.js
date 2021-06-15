@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { GET_USER_ORDERS_RESET } from '../Constants/orderConstants'
 import {
+  USERS_LIST_FAIL,
+  USERS_LIST_REQUEST,
+  USERS_LIST_SUCCESS,
   USER_DETAILS_RESET,
   USER_LOGIN_FAIL,
   USER_LOGIN_REQUEST,
@@ -148,6 +151,36 @@ export const userUpdateProfileAction = (user) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_UPDATE_PROFILE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+export const usersListAction = () => async (dispatch, getState) => {
+  try {
+    dispatch({ type: USERS_LIST_REQUEST })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const { data } = await axios.get(`/api/users/`, config)
+    dispatch({
+      type: USERS_LIST_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: USERS_LIST_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
