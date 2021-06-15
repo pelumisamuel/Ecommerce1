@@ -3,6 +3,7 @@ import { GET_USER_ORDERS_RESET } from '../Constants/orderConstants'
 import {
   USERS_LIST_FAIL,
   USERS_LIST_REQUEST,
+  USERS_LIST_RESET,
   USERS_LIST_SUCCESS,
   USER_DETAILS_RESET,
   USER_LOGIN_FAIL,
@@ -60,6 +61,7 @@ export const logoutAction = () => (dispatch) => {
   })
   dispatch({ type: USER_DETAILS_RESET })
   dispatch({ type: GET_USER_ORDERS_RESET })
+  dispatch({ type: USERS_LIST_RESET })
 }
 
 export const userRegisterAction =

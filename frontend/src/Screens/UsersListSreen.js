@@ -6,16 +6,23 @@ import Message from '../Components/Message'
 import Loader from '../Components/Loader'
 import { LinkContainer } from 'react-router-bootstrap'
 
-const UsersListSreen = () => {
+const UsersListSreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const usersList = useSelector((state) => state.usersList)
   const { loading, users, error } = usersList
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo } = userLogin
+
   useEffect(() => {
-    dispatch(usersListAction())
+    if (userInfo && userInfo.isAdmin) {
+      dispatch(usersListAction())
+    } else {
+      history.push('/login')
+    }
     // dispatch(usersListAction())
-  }, [dispatch])
+  }, [dispatch, history])
 
   const deleteHandler = () => {
     console.log('delete')
