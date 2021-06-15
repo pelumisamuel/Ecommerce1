@@ -22,7 +22,7 @@ const UsersListSreen = ({ history }) => {
       history.push('/login')
     }
     // dispatch(usersListAction())
-  }, [dispatch, history])
+  }, [dispatch, history, userInfo])
 
   const deleteHandler = () => {
     console.log('delete')
@@ -43,6 +43,7 @@ const UsersListSreen = ({ history }) => {
               <th>NAME</th>
               <th>EMAIL</th>
               <th>ADMIN</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>

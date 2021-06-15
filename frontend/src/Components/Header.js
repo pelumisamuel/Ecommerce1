@@ -3,7 +3,7 @@ import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutAction } from '../Actions/userAction'
 
-const Header = () => {
+const Header = ({ history }) => {
   const dispatch = useDispatch()
   const { userLogin, userInfo } = useSelector((state) => state.userLogin)
   const users = useSelector((state) => state.userLogin)
@@ -26,7 +26,7 @@ const Header = () => {
 
   const logoutHandler = () => {
     dispatch(logoutAction())
-    console.log(userLogin)
+    //console.log(userLogin)
   }
 
   return (
