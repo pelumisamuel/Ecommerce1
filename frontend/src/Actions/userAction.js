@@ -173,7 +173,7 @@ export const usersListAction = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    const { data } = await axios.get(`/api/users/`, config)
+    const { data } = await axios.get(`/api/users`, config)
     dispatch({
       type: USERS_LIST_SUCCESS,
       payload: data,
