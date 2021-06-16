@@ -1,5 +1,6 @@
 import { Router } from 'express'
 import {
+  deleteUser,
   getUser,
   getUserProfile,
   getUsers,
@@ -16,4 +17,5 @@ router
   .get(protect, getUserProfile)
   .put(protect, updateUserProfile)
 
+router.route('/:id').delete(protect, admin, deleteUser)
 export default router

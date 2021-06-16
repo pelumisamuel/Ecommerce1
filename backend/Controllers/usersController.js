@@ -106,7 +106,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
       token: generateToken(updatedUSer.id),
     })
   } else {
-    res.status(404)
+    res.status(401)
 
     throw new Error('incorrect update details')
   }
@@ -124,4 +124,24 @@ const getUsers = asyncHandler(async (req, res) => {
   res.json(users)
 })
 
-export { getUser, getUserProfile, registerUser, updateUserProfile, getUsers }
+const deleteUser = asyncHandler(async (req, res) => {
+  //console.log(req)
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    await user.remove()
+    res.json({ message: 'user has been removed' })
+  } else {
+    res.status(404)
+    throw new Error('User not found')
+  }
+})
+
+export {
+  getUser,
+  getUserProfile,
+  registerUser,
+  updateUserProfile,
+  getUsers,
+  deleteUser,
+}

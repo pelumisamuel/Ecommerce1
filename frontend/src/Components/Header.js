@@ -5,8 +5,8 @@ import { logoutAction } from '../Actions/userAction'
 
 const Header = ({ history }) => {
   const dispatch = useDispatch()
-  const { userLogin, userInfo } = useSelector((state) => state.userLogin)
-  const users = useSelector((state) => state.userLogin)
+  const { userInfo } = useSelector((state) => state.userLogin)
+  // const users = useSelector((state) => state.userLogin)
   //const userLogin = useSelector((state) => state.userLogin);
   const { userInfoUpdate } = useSelector((state) => state.userUpdateProfile)
   // if (userInfoUpdate) {
@@ -22,7 +22,7 @@ const Header = ({ history }) => {
   //console.log(name);
   //const { userInfo } = userLogin
   //console.log(userLogin);
-  console.log(users)
+  //console.log(users)
 
   const logoutHandler = () => {
     dispatch(logoutAction())
