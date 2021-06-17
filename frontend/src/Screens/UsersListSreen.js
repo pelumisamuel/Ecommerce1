@@ -1,19 +1,35 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
-import { usersListAction } from '../Actions/userAction'
+import { usersListAction, userDeleteAction } from '../Actions/userAction'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
+import ModalTest from '../Components/Modal'
 import { LinkContainer } from 'react-router-bootstrap'
 
 const UsersListSreen = ({ history }) => {
   const dispatch = useDispatch()
+
+  const [show, setShow] = useState(false)
+  const [userID, setUserID] = useState(null)
+
+  const handleClose = () => setShow(false)
+  const handleShow = () => setShow(true)
+
+  const deleteUser = () => {
+    setShow(false)
+    console.log(userID)
+    dispatch(userDeleteAction(userID))
+  }
 
   const usersList = useSelector((state) => state.usersList)
   const { loading, users, error } = usersList
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+
+  const userDelete = useSelector((state) => state.userDelete)
+  const { success: successDelete } = userDelete
 
   useEffect(() => {
     if (userInfo && userInfo.isAdmin) {
@@ -22,14 +38,23 @@ const UsersListSreen = ({ history }) => {
       history.push('/login')
     }
     // dispatch(usersListAction())
-  }, [dispatch, history, userInfo])
+  }, [dispatch, history, userInfo, successDelete])
 
-  const deleteHandler = () => {
-    console.log('delete')
-  }
+  // const deleteHandler = (id) => {
+  //   handleShow()
+  //   console.log(id)
+
+  //   //console.log('delete')
+  //   //dispatch(userDeleteAction(id))
+  // }
 
   return (
     <>
+      <ModalTest
+        handleClose={handleClose}
+        show={show}
+        action={userID && deleteUser}
+      />
       <h1>Users</h1>
       {loading ? (
         <Loader />
@@ -61,16 +86,23 @@ const UsersListSreen = ({ history }) => {
                     <i className='fas fa-times' style={{ color: 'red' }} />
                   )}
                 </td>
+
                 <td>
                   <LinkContainer to={`/user/${user._id}/edit`}>
                     <Button variant='light' className='btn-sm'>
                       <i className='fas fa-edit' />
                     </Button>
                   </LinkContainer>
+
                   <Button
                     variant='danger'
                     className='btn-sm'
-                    onClick={() => deleteHandler(user._id)}
+                    onClick={() => {
+                      handleShow()
+                      setUserID(user._id)
+
+                      //console.log(userID)
+                    }}
                   >
                     <i className='fas fa-trash' />
                   </Button>
