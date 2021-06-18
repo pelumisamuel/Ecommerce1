@@ -137,6 +137,50 @@ const deleteUser = asyncHandler(async (req, res) => {
   }
 })
 
+// get user
+// 1. from route Get api/users/:id
+// 2 access = Private/Admin
+
+const getUserById = asyncHandler(async (req, res) => {
+  //console.log(req)
+  const user = await User.findById(req.params.id).select('-password')
+
+  if (user) {
+    res.json(user)
+  } else {
+    res.status(404).json('request not found')
+
+    throw new Error('User not found')
+  }
+})
+
+// *** User update
+// update user
+// 1. from route put api/users/:id
+// 2 access = Private/Admin
+const updateUser = asyncHandler(async (req, res) => {
+  const user = await User.findById(req.params.id)
+
+  if (user) {
+    user.name = req.body.name || user.name
+    user.email = req.body.email || user.email
+    user.isAdmin = req.body.isAdmin || user.isAdmin
+
+    const updatedUSer = await user.save()
+
+    res.json({
+      _id: updatedUSer.id,
+      name: updatedUSer.name,
+      email: updatedUSer.email,
+      isAdmin: updatedUSer.isAdmin,
+    })
+  } else {
+    res.status(404)
+
+    throw new Error('User not found')
+  }
+})
+
 export {
   getUser,
   getUserProfile,
@@ -144,4 +188,6 @@ export {
   updateUserProfile,
   getUsers,
   deleteUser,
+  getUserById,
+  updateUser,
 }

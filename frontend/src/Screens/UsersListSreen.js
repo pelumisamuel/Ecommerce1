@@ -11,14 +11,16 @@ const UsersListSreen = ({ history }) => {
   const dispatch = useDispatch()
 
   const [show, setShow] = useState(false)
+
+  // get clicked user id from state
   const [userID, setUserID] = useState(null)
 
   const handleClose = () => setShow(false)
   const handleShow = () => setShow(true)
 
+  // function passed to  modal action props
   const deleteUser = () => {
     setShow(false)
-    console.log(userID)
     dispatch(userDeleteAction(userID))
   }
 
