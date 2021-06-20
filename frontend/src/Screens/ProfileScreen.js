@@ -57,7 +57,7 @@ const ProfileScreen = ({ location, history }) => {
       setConfirmPassword('')
     }
   }
-  const color = 'black'
+  
   return (
     <Row>
       <Col md={3}>
