@@ -1,4 +1,8 @@
 import {
+  UPDATE_USER_FAIL,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_RESET,
+  UPDATE_USER_SUCCESS,
   USERS_LIST_FAIL,
   USERS_LIST_REQUEST,
   USERS_LIST_RESET,
@@ -101,6 +105,21 @@ export const userDeleteReducer = (state = {}, action) => {
       return { loading: false, success: true }
     case USER_DELETE_FAIL:
       return { loading: false, error: action.payload }
+    default:
+      return state
+  }
+}
+
+export const updateUserReducer = (state = { user: {} }, action) => {
+  switch (action.type) {
+    case UPDATE_USER_REQUEST:
+      return { loading: true, }
+    case UPDATE_USER_SUCCESS:
+      return { loading: false, success:true }
+    case UPDATE_USER_FAIL:
+      return { loading: false, error: action.payload }
+    case UPDATE_USER_RESET:
+      return { user: {} }
     default:
       return state
   }

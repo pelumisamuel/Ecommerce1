@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 import { Form, Button } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import FormContainer from '../Components/FormContainer'
-import { userUpdateAction } from '../Actions/userAction'
+import { userUpdateAction,updateUserAction } from '../Actions/userAction'
 import Message from '../Components/Message'
 import Loader from '../Components/Loader'
+import { UPDATE_USER_RESET } from '../Constants/usersConstants'
 
 const UserEditScreen = ({ history, match }) => {
     const userID = match.params.id
@@ -19,21 +20,30 @@ const UserEditScreen = ({ history, match }) => {
 
   const userUpdate = useSelector((state) => state.userUpdate)
   const { loading, error, user } = userUpdate
+
+  const updateUser = useSelector((state) => state.updateUser)
+  const { loading:loadingUpdate, error:errorUpdate, success:successUpdate} = updateUser
  
 
   useEffect(() => {
+    if(successUpdate){
+      dispatch({type: UPDATE_USER_RESET})
+    }else{
       if(!user.name || user._id !== userID){
-          dispatch(userUpdateAction(userID))
-      }else{
-          setName(user.name)
-          setEmail(user.email)
-          setIsAdmin(user.isAdmin)
-      }
+        dispatch(userUpdateAction(userID))
+    }else{
+        setName(user.name)
+        setEmail(user.email)
+        setIsAdmin(user.isAdmin)
+    }
+    }
+     
    
-  }, [ dispatch, user, userID])
+  }, [ dispatch, user, userID,successUpdate])
 
   const submitHandler = (e) => {
     e.preventDefault()
+    dispatch(updateUserAction({_id: userID, name, email, isAdmin} ))
  
   }
 
@@ -46,7 +56,9 @@ const UserEditScreen = ({ history, match }) => {
 
       <FormContainer>
       <h1>Edit User</h1>
-      {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>:
+      {loadingUpdate&&<Loader/>}
+      {errorUpdate&& <Message variant='danger'>{error}</Message>}
+      {loading ? <Loader/> : error ? <Message variant='danger'>{error}</Message>:(
 
       <Form onSubmit={submitHandler}>
       <Form.Group controlId='name'>
@@ -80,6 +92,7 @@ const UserEditScreen = ({ history, match }) => {
         Update
       </Button>
     </Form>
+      )
       }
       
     

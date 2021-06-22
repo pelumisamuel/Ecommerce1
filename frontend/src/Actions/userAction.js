@@ -1,6 +1,9 @@
 import axios from 'axios'
 import { GET_USER_ORDERS_RESET } from '../Constants/orderConstants'
 import {
+  UPDATE_USER_FAIL,
+  UPDATE_USER_REQUEST,
+  UPDATE_USER_SUCCESS,
   USERS_LIST_FAIL,
   USERS_LIST_REQUEST,
   USERS_LIST_RESET,
@@ -215,6 +218,39 @@ export const userDeleteAction = (id) => async (dispatch, getState) => {
   } catch (error) {
     dispatch({
       type: USER_DELETE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
+
+
+export const updateUserAction = (user) => async (dispatch, getState) => {
+  try {
+    dispatch({ type: UPDATE_USER_REQUEST })
+
+    const {
+      userLogin: { userInfo },
+    } = getState()
+    console.log(user)
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${userInfo.token}`,
+      },
+    }
+    const { data } = await axios.put(`/api/users/${user._id}`, user, config)
+    dispatch({type: UPDATE_USER_SUCCESS})
+    dispatch({
+      type: USER_UPDATE_SUCCESS,
+      payload: data,
+    })
+  } catch (error) {
+    dispatch({
+      type: UPDATE_USER_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

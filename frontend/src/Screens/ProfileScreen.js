@@ -38,7 +38,7 @@ const ProfileScreen = ({ location, history }) => {
       history.push('/login')
     } else {
       if (!user.name) {
-        dispatch(userUpdateAction('profile'))
+        dispatch(userUpdateAction(userInfo._id))
         dispatch(getUserOrders())
       } else {
         setName(user.name)
