@@ -3,6 +3,7 @@
 // const dotenv = require('dotenv')
 
 import express from 'express'
+import morgan from 'morgan'
 import products from './Data/products.js'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
@@ -17,6 +18,10 @@ dotenv.config()
 connectDB()
 
 const app = express()
+
+if(process.env.NODE_ENV === 'development'){
+  app.use(morgan('dev'))
+}
 
 app.use(express.json())
 
