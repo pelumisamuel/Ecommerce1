@@ -8,7 +8,9 @@ import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 // import axios from 'axios'
 
-const HomeScreen = () => {
+const HomeScreen = ({ match }) => {
+  const keyword = match.params.keyword
+  // console.log(keyword)
   const dispatch = useDispatch()
 
   const productList = useSelector((state) => state.productList)
@@ -16,7 +18,7 @@ const HomeScreen = () => {
 
   // const [products, setProducts] = useState([])
   useEffect(() => {
-    dispatch(listProducts())
+    dispatch(listProducts(keyword))
 
     // const fetchProducts = async () => {
     //   const { data } = await axios.get('/api/products')
@@ -24,7 +26,7 @@ const HomeScreen = () => {
     // }
 
     // fetchProducts()
-  }, [dispatch])
+  }, [dispatch, keyword])
 
   console.log(products)
   return (
@@ -33,7 +35,7 @@ const HomeScreen = () => {
       {loading ? (
         <Loader />
       ) : error ? (
-        <Message variant="danger"> {error}....</Message>
+        <Message variant='danger'> {error}....</Message>
       ) : (
         <Row>
           {products.map((product) => (

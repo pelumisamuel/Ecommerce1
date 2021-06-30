@@ -173,7 +173,9 @@ const ProductScreen = ({ history, match }) => {
                 {product.reviews.map((review) => (
                   <ListGroup.Item key={review._id}>
                     <strong>{review.name}</strong>
-                    <Ratings value={review.rating}> Stars</Ratings>
+                    <Ratings value={review.rating} text={'stars'}>
+                      {' '}
+                    </Ratings>
                     <p>{review.createdAt.substring(0, 10)}</p>
                     <p>{review.comment}</p>
                   </ListGroup.Item>

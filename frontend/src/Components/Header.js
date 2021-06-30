@@ -1,7 +1,9 @@
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { Route } from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { logoutAction } from '../Actions/userAction'
+import SearchBox from './SearchBox'
 
 const Header = ({ history }) => {
   const dispatch = useDispatch()
@@ -9,8 +11,8 @@ const Header = ({ history }) => {
   // const users = useSelector((state) => state.userLogin)
   //const userLogin = useSelector((state) => state.userLogin);
   const { userInfoUpdate } = useSelector((state) => state.userUpdateProfile)
-  // if (userInfoUpdate) {
-  //   let userInfo = userInfoUpdate;
+  //  if (userInfoUpdate) {
+  //  let userInfo = userInfoUpdate;
   // }
 
   // } else {
@@ -37,7 +39,7 @@ const Header = ({ history }) => {
           <LinkContainer to='/'>
             <Navbar.Brand>ProShop</Navbar.Brand>
           </LinkContainer>
-
+          <Route render={({ history }) => <SearchBox history={history} />} />
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
           <Navbar.Collapse id='basic-navbar-nav'>
             <Nav className='ml-auto '>
