@@ -28,7 +28,7 @@ const HomeScreen = ({ match }) => {
     // fetchProducts()
   }, [dispatch, keyword])
 
-  console.log(products)
+  // console.log(products)
   return (
     <>
       <h1>Latest Products</h1>
