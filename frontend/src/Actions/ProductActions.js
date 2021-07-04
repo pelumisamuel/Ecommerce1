@@ -9,6 +9,9 @@ import {
   PRODUCT_REVIEWS_REQUEST,
   PRODUCT_REVIEWS_FAIL,
   PRODUCT_REVIEWS_SUCCESS,
+  PRODUCT_TOP_REQUEST,
+  PRODUCT_TOP_SUCCESS,
+  PRODUCT_TOP_FAIL,
 } from '../Constants/productListConstants'
 
 //double arrow function possible because of thunk
@@ -33,6 +36,24 @@ export const listProducts =
       })
     }
   }
+
+export const topRatedProducts = () => async (dispatch) => {
+  try {
+    dispatch({ type: PRODUCT_TOP_REQUEST })
+
+    const { data } = await axios.get(`/api/products/top`)
+
+    dispatch({ type: PRODUCT_TOP_SUCCESS, payload: data })
+  } catch (error) {
+    dispatch({
+      type: PRODUCT_TOP_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    })
+  }
+}
 
 export const listProductDetails = (id) => async (dispatch) => {
   try {

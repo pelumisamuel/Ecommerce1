@@ -7,6 +7,7 @@ import { listProducts } from '../Actions/ProductActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import Paginate from '../Components/Paginate'
+import ProductCarousel from '../Components/ProductCarousel'
 // import axios from 'axios'
 
 const HomeScreen = ({ match }) => {
@@ -34,13 +35,15 @@ const HomeScreen = ({ match }) => {
   // console.log(products)
   return (
     <>
-      <h1>Latest Products</h1>
+      {!keyword && <ProductCarousel />}
+
       {loading ? (
         <Loader />
       ) : error ? (
         <Message variant='danger'> {error}....</Message>
       ) : (
         <>
+          <h1>Latest Products</h1>
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

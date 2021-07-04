@@ -203,7 +203,7 @@ const ProductScreen = ({ history, match }) => {
                         </Form.Control>
                       </Form.Group>
 
-                      <Form.Group controlId='rating'>
+                      <Form.Group controlId='comment'>
                         <Form.Label> Comment </Form.Label>
                         <Form.Control
                           as='textarea'

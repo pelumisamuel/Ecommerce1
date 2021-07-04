@@ -2,7 +2,7 @@ import Product from '../Models/productModel.js'
 import asyncHandler from 'express-async-handler'
 
 export const getProduct = asyncHandler(async (req, res) => {
-  const pageSize = 3
+  const pageSize = 4
   const page = Number(req.query.pageNumber) || 1
 
   // req.query is used for query request i.e  GET/api/Products?=keyword wher question mark denotes where the query start
@@ -20,6 +20,12 @@ export const getProduct = asyncHandler(async (req, res) => {
     .skip(pageSize * (page - 1))
 
   res.json({ products, page, pages: Math.ceil(count / pageSize) })
+})
+
+export const getTopProducts = asyncHandler(async (req, res) => {
+  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+
+  res.json(products)
 })
 
 export const getProductID = asyncHandler(async (req, res) => {
