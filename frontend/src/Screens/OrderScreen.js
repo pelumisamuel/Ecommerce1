@@ -25,7 +25,7 @@ const OrderScreen = ({ match }) => {
   // const orderCreate = useSelector((state) => state.orderCreate)
 
   const orderPay = useSelector((state) => state.orderPay)
-  const { success: successPay, loading: loadingPay, error: errorPay } = orderPay
+  const { success: successPay, loading: loadingPay } = orderPay
 
   if (order) {
     order.itemsPrice = order.orderItems

@@ -13,7 +13,7 @@ const PlaceOrderScreen = ({ history }) => {
   const orderCreate = useSelector((state) => state.orderCreate)
   const { order, error } = orderCreate
 
-  const orderDetails = useSelector((state) => state.orderDetails)
+  //const orderDetails = useSelector((state) => state.orderDetails)
 
   const dispatchOrder = () =>
     dispatch(
