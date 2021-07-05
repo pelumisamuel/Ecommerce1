@@ -1,13 +1,15 @@
 import { Row, Col } from 'react-bootstrap'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-
 import Product from '../Components/Product'
 import { listProducts } from '../Actions/ProductActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import Paginate from '../Components/Paginate'
 import ProductCarousel from '../Components/ProductCarousel'
+import Meta from '../Components/Meta'
+
 // import axios from 'axios'
 
 const HomeScreen = ({ match }) => {
@@ -35,7 +37,7 @@ const HomeScreen = ({ match }) => {
   // console.log(products)
   return (
     <>
-      {!keyword && <ProductCarousel />}
+      <Meta />
 
       {loading ? (
         <Loader />
@@ -43,6 +45,13 @@ const HomeScreen = ({ match }) => {
         <Message variant='danger'> {error}....</Message>
       ) : (
         <>
+          {!keyword ? (
+            <ProductCarousel />
+          ) : (
+            <Link to='/' className='btn btn-light'>
+              back
+            </Link>
+          )}
           <h1>Latest Products</h1>
           <Row>
             {products.map((product) => (

@@ -23,6 +23,7 @@ import {
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import { PRODUCT_REVIEWS_RESET } from '../Constants/productListConstants'
+import Meta from '../Components/Meta'
 
 const ProductScreen = ({ history, match }) => {
   //const [product, setSingleProduct] = useState({})
@@ -71,6 +72,7 @@ const ProductScreen = ({ history, match }) => {
 
   return (
     <>
+      <Meta title={product.name} />
       <Link className='btn btn-light my-3' to='/'>
         Go back
       </Link>
