@@ -54,7 +54,7 @@ const HomeScreen = ({ match }) => {
             </Link>
           )}
 
-          {!keyword && <TopProducts />}
+          {!keyword && pageNumber < 1 && <TopProducts />}
 
           {!keyword && <h1>Latest Products</h1>}
 
