@@ -9,6 +9,7 @@ import Message from '../Components/Message'
 import Paginate from '../Components/Paginate'
 import ProductCarousel from '../Components/ProductCarousel'
 import Meta from '../Components/Meta'
+import TopProducts from '../Components/TopProducts'
 
 // import axios from 'axios'
 
@@ -34,7 +35,7 @@ const HomeScreen = ({ match }) => {
     // fetchProducts()
   }, [dispatch, keyword, pageNumber])
 
-  // console.log(products)
+  console.log(products)
   return (
     <>
       <Meta />
@@ -52,7 +53,11 @@ const HomeScreen = ({ match }) => {
               back
             </Link>
           )}
-          <h1>Latest Products</h1>
+
+          <TopProducts />
+
+          {!keyword && <h1>Latest Products</h1>}
+
           <Row>
             {products.map((product) => (
               <Col key={product._id} sm={12} md={6} lg={4} xl={3}>

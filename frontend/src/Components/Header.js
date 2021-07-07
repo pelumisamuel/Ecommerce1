@@ -34,7 +34,7 @@ const Header = ({ history }) => {
   return (
     // test
     <header>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar bg='primary' variant='dark' expand='lg'>
         <Container>
           <LinkContainer to='/'>
             <Navbar.Brand>ProShop</Navbar.Brand>
@@ -49,17 +49,19 @@ const Header = ({ history }) => {
                 </Nav.Link>
               </LinkContainer>
               {userInfo ? (
-                <NavDropdown
-                  title={userInfoUpdate ? userInfoUpdate.name : userInfo.name}
-                  id='username'
-                >
-                  <LinkContainer to='/profile'>
-                    <NavDropdown.Item>Profile</NavDropdown.Item>
-                  </LinkContainer>
-                  <NavDropdown.Item onClick={logoutHandler}>
-                    Logout
-                  </NavDropdown.Item>
-                </NavDropdown>
+                <>
+                  <NavDropdown
+                    title={userInfoUpdate ? userInfoUpdate.name : userInfo.name}
+                    id='username'
+                  >
+                    <LinkContainer to='/profile'>
+                      <NavDropdown.Item>Profile</NavDropdown.Item>
+                    </LinkContainer>
+                    <NavDropdown.Item onClick={logoutHandler}>
+                      Logout
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </>
               ) : (
                 <LinkContainer to='/login'>
                   <Nav.Link>
@@ -68,17 +70,19 @@ const Header = ({ history }) => {
                 </LinkContainer>
               )}
               {userInfo && userInfo.isAdmin && (
-                <NavDropdown title='Admin' id='adminmenu'>
-                  <LinkContainer to='/admin/userslist'>
-                    <NavDropdown.Item>Users</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/productlist'>
-                    <NavDropdown.Item>Products</NavDropdown.Item>
-                  </LinkContainer>
-                  <LinkContainer to='/admin/orderlist'>
-                    <NavDropdown.Item>Orders</NavDropdown.Item>
-                  </LinkContainer>
-                </NavDropdown>
+                <>
+                  <NavDropdown title='Admin' id='adminmenu'>
+                    <LinkContainer to='/admin/userslist'>
+                      <NavDropdown.Item>Users</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to='/admin/productlist'>
+                      <NavDropdown.Item>Products</NavDropdown.Item>
+                    </LinkContainer>
+                    <LinkContainer to='/admin/orderlist'>
+                      <NavDropdown.Item>Orders</NavDropdown.Item>
+                    </LinkContainer>
+                  </NavDropdown>
+                </>
               )}
             </Nav>
           </Navbar.Collapse>

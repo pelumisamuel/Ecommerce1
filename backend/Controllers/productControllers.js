@@ -23,7 +23,7 @@ export const getProduct = asyncHandler(async (req, res) => {
 })
 
 export const getTopProducts = asyncHandler(async (req, res) => {
-  const products = await Product.find({}).sort({ rating: -1 }).limit(3)
+  const products = await Product.find({}).sort({ rating: -1 }).limit(4)
 
   res.json(products)
 })

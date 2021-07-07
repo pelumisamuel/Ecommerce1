@@ -98,7 +98,7 @@ const OrderScreen = ({ match }) => {
                 {order.shippingAddress.country}
               </p>
               {order.isDelivered ? (
-                <Message variant='success'>
+                <Message variant='outline-success'>
                   Order successfully Delivered! Delivered at :
                   {order.deliveredAt}
                 </Message>

@@ -26,11 +26,11 @@ const Product = ({ product }) => {
         <Card.Text as='h3'> ${product.price}</Card.Text>
         {product.isFavorite ? (
           <span>
-            <i class='fas fa-heart' aria-hidden='true'></i>
+            <i className='fas fa-heart' aria-hidden='true'></i>
           </span>
         ) : (
           <span>
-            <i class='far fa-heart' aria-hidden='true'></i>
+            <i className='far fa-heart' aria-hidden='true'></i>
           </span>
         )}
       </Card.Body>
