@@ -24,6 +24,9 @@ const importData = async () => {
     //const createdUsers = await User.insertMany(users)
 
     // const createdUsers = await User.(users)
+    /**
+     * find admin User and use it to add new products
+     */
     const users = await User.find({})
     //console.log(users)
     // const adminUser = createdUsers[0]._id

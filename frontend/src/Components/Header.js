@@ -37,7 +37,7 @@ const Header = ({ history }) => {
       <Navbar bg='primary' variant='dark' expand='lg'>
         <Container>
           <LinkContainer to='/'>
-            <Navbar.Brand>ProShop</Navbar.Brand>
+            <Navbar.Brand>DropShop</Navbar.Brand>
           </LinkContainer>
           <Route render={({ history }) => <SearchBox history={history} />} />
           <Navbar.Toggle aria-controls='basic-navbar-nav' />
