@@ -8,7 +8,7 @@ const CheckOutSteps = ({
   step4 = { Boolean },
 }) => {
   return (
-    <Nav className='justify-content-center mb-4'>
+    <Nav className='justify-content-center mb-4' variant='tabs'>
       {/* <Nav.Item>
         {step1 ? (
           <LinkContainer to="/login">

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Form, Button } from 'react-bootstrap'
 import { savePaymentMethod } from '../Actions/cartActions'
@@ -11,11 +11,11 @@ const PaymentScreen = ({ history }) => {
 
   const { shippingAddress } = cart
 
-  ;(() => {
+  useEffect(() => {
     if (!shippingAddress.address) {
       history.push('/shipping')
     }
-  })()
+  }, [shippingAddress])
 
   const [paymentMethod, setPaymentMethod] = useState(cart.paymentMethod)
 

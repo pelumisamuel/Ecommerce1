@@ -10,6 +10,7 @@ import Paginate from '../Components/Paginate'
 import ProductCarousel from '../Components/ProductCarousel'
 import Meta from '../Components/Meta'
 import TopProducts from '../Components/TopProducts'
+import PageCarousel from '../Components/PageCarousel'
 
 // import axios from 'axios'
 
@@ -47,7 +48,7 @@ const HomeScreen = ({ match }) => {
       ) : (
         <>
           {!keyword ? (
-            <ProductCarousel />
+            <PageCarousel />
           ) : (
             <Link to='/' className='btn btn-light'>
               back

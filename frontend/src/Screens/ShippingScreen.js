@@ -11,6 +11,7 @@ const ShippingScreen = ({ history }) => {
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
 
+  // i should use useEffect here
   ;(() => {
     if (!userInfo) {
       history.push('/login?redirect=shipping')
@@ -41,7 +42,7 @@ const ShippingScreen = ({ history }) => {
         step1
         step2
         step3={shippingAddress.address ? true : false}
-        step4={cart.paymentMethod ? true : false}
+        step4={cart.paymentMethod && shippingAddress.address ? true : false}
       />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>
