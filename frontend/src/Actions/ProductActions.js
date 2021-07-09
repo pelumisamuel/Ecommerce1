@@ -89,14 +89,10 @@ export const createProductReviews =
         },
       }
 
-      const { data } = await axios.post(
-        `/api/products/${productId}/reviews`,
-        review,
-        config
-      )
+      await axios.post(`/api/products/${productId}/reviews`, review, config)
 
       // check the data output here
-      console.log(data)
+      // console.log(data)
 
       dispatch({
         type: PRODUCT_REVIEWS_SUCCESS,

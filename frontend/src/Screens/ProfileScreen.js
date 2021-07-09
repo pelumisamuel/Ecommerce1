@@ -4,7 +4,7 @@ import { Form, Button, Row, Col, Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
-  userUpdateAction,
+  userDetailsAction,
   userUpdateProfileAction,
 } from '../Actions/userAction'
 import { getUserOrders } from '../Actions/orderActions'
@@ -21,8 +21,8 @@ const ProfileScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
-  const userUpdate = useSelector((state) => state.userUpdate)
-  const { loading, error, user } = userUpdate
+  const userDetails = useSelector((state) => state.userDetails)
+  const { loading, error, user } = userDetails
 
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile)
   const { success } = userUpdateProfile
@@ -32,13 +32,14 @@ const ProfileScreen = ({ location, history }) => {
 
   const userLogin = useSelector((state) => state.userLogin)
   const { userInfo } = userLogin
+  console.log(userInfo)
 
   useEffect(() => {
     if (!userInfo) {
       history.push('/login')
     } else {
       if (!user.name) {
-        dispatch(userUpdateAction(userInfo._id))
+        dispatch(userDetailsAction())
         dispatch(getUserOrders())
       } else {
         setName(user.name)
@@ -57,7 +58,7 @@ const ProfileScreen = ({ location, history }) => {
       setConfirmPassword('')
     }
   }
-  
+
   return (
     <Row>
       <Col md={3}>

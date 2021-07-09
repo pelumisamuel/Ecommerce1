@@ -7,7 +7,7 @@ import { listProducts } from '../Actions/ProductActions'
 import Loader from '../Components/Loader'
 import Message from '../Components/Message'
 import Paginate from '../Components/Paginate'
-import ProductCarousel from '../Components/ProductCarousel'
+
 import Meta from '../Components/Meta'
 import TopProducts from '../Components/TopProducts'
 import PageCarousel from '../Components/PageCarousel'
@@ -36,7 +36,6 @@ const HomeScreen = ({ match }) => {
     // fetchProducts()
   }, [dispatch, keyword, pageNumber])
 
-  console.log(products)
   return (
     <>
       <Meta />
@@ -47,7 +46,7 @@ const HomeScreen = ({ match }) => {
         <Message variant='danger'> {error}....</Message>
       ) : (
         <>
-          {!keyword ? (
+          {/* {!keyword ? (
             <PageCarousel />
           ) : (
             <Link to='/' className='btn btn-light'>
@@ -57,7 +56,7 @@ const HomeScreen = ({ match }) => {
 
           {!keyword && pageNumber < 2 && <TopProducts />}
 
-          {!keyword && <h1>Latest Products</h1>}
+          {!keyword && <h1>Latest Products</h1>} */}
 
           <Row>
             {products.map((product) => (

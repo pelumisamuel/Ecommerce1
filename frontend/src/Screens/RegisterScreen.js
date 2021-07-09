@@ -16,16 +16,27 @@ const RegisterScreen = ({ location, history }) => {
 
   const dispatch = useDispatch()
 
+  const userLogin = useSelector((state) => state.userLogin)
+  const { userInfo: loggedInUser } = userLogin
+
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, error, userInfo } = userRegister
+  console.log(userInfo)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
+  console.log(redirect)
+  // useEffect(() => {
+  //   if (loginUser) {
+  //     history.push(redirect)
+  //   }
+  // }, [history, redirect, userInfo, loginUser])
 
   useEffect(() => {
-    if (userInfo) {
+    if (loggedInUser) {
       history.push(redirect)
+      window.location.reload()
     }
-  }, [history, redirect, userInfo])
+  }, [history, redirect, userInfo, loggedInUser])
 
   const submitHandler = (e) => {
     e.preventDefault()
@@ -49,7 +60,8 @@ const RegisterScreen = ({ location, history }) => {
             type='name'
             placeholder='enter your name'
             value={name}
-            onChange={(e) => setName(e.target.value)}></Form.Control>
+            onChange={(e) => setName(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='email'>
@@ -58,7 +70,8 @@ const RegisterScreen = ({ location, history }) => {
             type='email'
             placeholder='enter email'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}></Form.Control>
+            onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='password'>
@@ -67,7 +80,8 @@ const RegisterScreen = ({ location, history }) => {
             type='password'
             placeholder='enter password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}></Form.Control>
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='confirmpassword'>
@@ -76,7 +90,8 @@ const RegisterScreen = ({ location, history }) => {
             type='password'
             placeholder='enter Confirm password'
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}></Form.Control>
+            onChange={(e) => setConfirmPassword(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Button type='submit' variant='primary' className='btn-block'>

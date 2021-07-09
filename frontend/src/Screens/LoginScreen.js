@@ -21,6 +21,7 @@ const LoginScreen = ({ location, history }) => {
   useEffect(() => {
     if (userInfo) {
       history.push(redirect)
+      window.location.reload()
     }
   }, [history, redirect, userInfo])
 
@@ -41,7 +42,8 @@ const LoginScreen = ({ location, history }) => {
             type='email'
             placeholder='enter email'
             value={email}
-            onChange={(e) => setEmail(e.target.value)}></Form.Control>
+            onChange={(e) => setEmail(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Form.Group controlId='password'>
@@ -50,7 +52,8 @@ const LoginScreen = ({ location, history }) => {
             type='password'
             placeholder='enter password'
             value={password}
-            onChange={(e) => setPassword(e.target.value)}></Form.Control>
+            onChange={(e) => setPassword(e.target.value)}
+          ></Form.Control>
         </Form.Group>
 
         <Button type='submit' variant='primary' className='btn-block'>
