@@ -34,7 +34,6 @@ const RegisterScreen = ({ location, history }) => {
   useEffect(() => {
     if (loggedInUser) {
       history.push(redirect)
-      window.location.reload()
     }
   }, [history, redirect, userInfo, loggedInUser])
 
