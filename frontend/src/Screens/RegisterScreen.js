@@ -21,10 +21,8 @@ const RegisterScreen = ({ location, history }) => {
 
   const userRegister = useSelector((state) => state.userRegister)
   const { loading, error, userInfo } = userRegister
-  console.log(userInfo)
 
   const redirect = location.search ? location.search.split('=')[1] : '/'
-  console.log(redirect)
   // useEffect(() => {
   //   if (loginUser) {
   //     history.push(redirect)
