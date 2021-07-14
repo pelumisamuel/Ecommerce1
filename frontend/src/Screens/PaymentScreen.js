@@ -24,9 +24,9 @@ const PaymentScreen = ({ history }) => {
   const submitHandler = (e) => {
     e.preventDefault()
     dispatch(savePaymentMethod(paymentMethod))
-    console.log('register clicked')
+    // console.log('register clicked')
     history.push('/placeorder')
-    console.log(paymentMethod)
+    //console.log(paymentMethod)
   }
 
   return (
@@ -47,7 +47,9 @@ const PaymentScreen = ({ history }) => {
             id='paypal'
             value='paypal'
             name='payment'
-            checked={paymentMethod === 'paypal' ? true : false}
+            checked={
+              paymentMethod === 'paypal' || !paymentMethod ? true : false
+            }
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
 

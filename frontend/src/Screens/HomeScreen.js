@@ -46,7 +46,7 @@ const HomeScreen = ({ match }) => {
         <Message variant='danger'> {error}....</Message>
       ) : (
         <>
-          {/* {!keyword ? (
+          {!keyword ? (
             <PageCarousel />
           ) : (
             <Link to='/' className='btn btn-light'>
@@ -56,7 +56,7 @@ const HomeScreen = ({ match }) => {
 
           {!keyword && pageNumber < 2 && <TopProducts />}
 
-          {!keyword && <h1>Latest Products</h1>} */}
+          {!keyword && <h1>Latest Products</h1>}
 
           <Row>
             {products.map((product) => (

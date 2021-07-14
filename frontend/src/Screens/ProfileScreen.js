@@ -38,15 +38,15 @@ const ProfileScreen = ({ location, history }) => {
     if (!userInfo) {
       history.push('/login')
     } else {
-      if (!user.name) {
-        dispatch(userDetailsAction())
+      if (!user || !user.name) {
+        dispatch(userDetailsAction('profile'))
         dispatch(getUserOrders())
       } else {
         setName(user.name)
         setEmail(user.email)
       }
     }
-  }, [dispatch, history, userInfo, user])
+  }, [dispatch, history, userInfo, user, success])
 
   const submitHandler = (e) => {
     e.preventDefault()

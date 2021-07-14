@@ -81,7 +81,7 @@ export const userRegisterAction =
         },
       }
       const { data } = await axios.post(
-        '/api/users/',
+        '/api/users',
         { name, email, password },
         config
       )
@@ -94,7 +94,11 @@ export const userRegisterAction =
         type: USER_LOGIN_SUCCESS,
         payload: data,
       })
-      localStorage.setItem('userInfo', JSON.stringify(getState(data)))
+      //localStorage.setItem('userInfo', JSON.stringify(getState(data)))
+      localStorage.setItem(
+        'userInfo',
+        JSON.stringify(getState().userLogin.userInfo)
+      )
     } catch (error) {
       dispatch({
         type: USER_REGISTER_FAIL,
@@ -106,7 +110,7 @@ export const userRegisterAction =
     }
   }
 
-export const userDetailsAction = () => async (dispatch, getState) => {
+export const userDetailsAction = (id) => async (dispatch, getState) => {
   try {
     dispatch({ type: USER_DETAILS_REQUEST })
 
@@ -120,7 +124,7 @@ export const userDetailsAction = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.token}`,
       },
     }
-    const { data } = await axios.get(`/api/users/profile`, config)
+    const { data } = await axios.get(`/api/users/${id}`, config)
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
