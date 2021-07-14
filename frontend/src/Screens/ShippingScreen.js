@@ -18,7 +18,7 @@ const ShippingScreen = ({ history }) => {
     }
   })()
 
-  const { shippingAddress } = cart
+  const { shippingAddress, paymentMethod } = cart
 
   const [address, setAddress] = useState(shippingAddress.address)
   const [city, setCity] = useState(shippingAddress.city)
@@ -42,7 +42,7 @@ const ShippingScreen = ({ history }) => {
         step1
         step2
         step3={shippingAddress.address && true}
-        step4={cart.paymentMethod && shippingAddress.address && true}
+        step4={paymentMethod && shippingAddress.address && true}
       />
       <h1>Shipping</h1>
       <Form onSubmit={submitHandler}>

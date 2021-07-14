@@ -35,7 +35,7 @@ const PaymentScreen = ({ history }) => {
         step1
         step2
         step3={true}
-        step4={cart.paymentMethod !== paymentMethod ? false : true}
+        step4={paymentMethod && cart.paymentMethod === paymentMethod && true}
       />
       <h1>Payment Method</h1>
       <Form onSubmit={submitHandler}>
@@ -47,9 +47,7 @@ const PaymentScreen = ({ history }) => {
             id='paypal'
             value='paypal'
             name='payment'
-            checked={
-              paymentMethod === 'paypal' || !paymentMethod ? true : false
-            }
+            checked={paymentMethod === 'paypal' && true}
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
 
@@ -59,7 +57,7 @@ const PaymentScreen = ({ history }) => {
             value='stripe'
             id='stripe'
             name='payment'
-            checked={paymentMethod === 'stripe' ? true : false}
+            checked={paymentMethod === 'stripe' && true}
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
           <Form.Check
@@ -68,7 +66,7 @@ const PaymentScreen = ({ history }) => {
             value='paystack'
             id='paystack'
             name='payment'
-            checked={paymentMethod === 'paystack' ? true : false}
+            checked={paymentMethod === 'paystack' && true}
             onChange={(e) => setPaymentMethod(e.target.value)}
           ></Form.Check>
         </Form.Group>
