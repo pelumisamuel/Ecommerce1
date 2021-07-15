@@ -64,7 +64,7 @@ const PlaceOrderScreen = ({ history }) => {
     if (order) {
       //dispatchOrder()
       history.push(`/order/${order._id}`)
-      window.location.reload()
+      //window.location.reload()
     }
     //   dispatchOrder()
   }, [history, order])

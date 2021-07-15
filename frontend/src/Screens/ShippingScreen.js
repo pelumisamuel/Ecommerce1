@@ -20,10 +20,18 @@ const ShippingScreen = ({ history }) => {
 
   const { shippingAddress, paymentMethod } = cart
 
-  const [address, setAddress] = useState(shippingAddress.address)
-  const [city, setCity] = useState(shippingAddress.city)
-  const [postalCode, setPostalCode] = useState(shippingAddress.postalCode)
-  const [country, setCountry] = useState(shippingAddress.country)
+  const [address, setAddress] = useState(
+    shippingAddress.address ? shippingAddress.address : ''
+  )
+  const [city, setCity] = useState(
+    shippingAddress.city ? shippingAddress.city : ''
+  )
+  const [postalCode, setPostalCode] = useState(
+    shippingAddress.postalCode ? shippingAddress.postalCode : ''
+  )
+  const [country, setCountry] = useState(
+    shippingAddress.country ? shippingAddress.country : ''
+  )
 
   const dispatch = useDispatch()
 
