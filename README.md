@@ -75,4 +75,4 @@ jane@example.com (Customer)
 123456
 
 # live website
-http://droptechshop.herokuapp.com/
+https://droptechshop.herokuapp.com/
