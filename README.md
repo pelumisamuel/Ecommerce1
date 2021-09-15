@@ -60,7 +60,7 @@ npm run data:import
 ## Destroy data
 npm run data:destroy
 
-Sample User Logins
+# Sample User Logins
 
 admin@example.com (Admin)
 
@@ -73,3 +73,6 @@ john@example.com (Customer)
 jane@example.com (Customer)
 
 123456
+
+# live website
+http://droptechshop.herokuapp.com/
