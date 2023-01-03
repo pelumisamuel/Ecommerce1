@@ -1,4 +1,4 @@
-# Ecommerce1
+# DropTech
 An e-commerce website design for learning sake
 
 
