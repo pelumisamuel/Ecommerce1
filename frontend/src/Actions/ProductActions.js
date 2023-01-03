@@ -78,9 +78,7 @@ export const createProductReviews =
     try {
       dispatch({ type: PRODUCT_REVIEWS_REQUEST })
 
-      const {
-        userLogin: { userInfo },
-      } = getState()
+      const {userLogin: { userInfo }, } = getState()
 
       const config = {
         headers: {

@@ -17,27 +17,28 @@ const importData = async () => {
     /**
      * clear all data from database
      */
-    // await Order.deleteMany()
-    // await User.deleteMany()
-    // await Product.deleteMany()
+    await Order.deleteMany()
+    await User.deleteMany()
+    await Product.deleteMany()
 
-    //const createdUsers = await User.insertMany(users)
+    const createdUsers = await User.insertMany(users)
 
     // const createdUsers = await User.(users)
     /**
      * find admin User and use it to add new products
      */
-    const users = await User.find({})
+    // const users = await User.find({})
     //console.log(users)
-    // const adminUser = createdUsers[0]._id
+    const adminUser = createdUsers[0]._id
 
-    const adminUser = users[0]._id
-    console.log(adminUser)
+    // const adminUser = users[0]._id
+    // console.log(adminUser)
+    console.log(users)
 
     const sampleProducts = products.map((product) => {
       return { ...product, user: adminUser }
     })
-
+    console.log(sampleProducts)
     await Product.insertMany(sampleProducts)
     console.log('data imported!'.green.inverse)
     process.exit()

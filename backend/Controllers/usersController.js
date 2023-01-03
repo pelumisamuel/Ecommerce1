@@ -115,7 +115,7 @@ const updateUserProfile = asyncHandler(async (req, res) => {
 // *** get all User details for admin
 
 // 1. from route get /api/users
-// 2 access = Private
+// 2 access = Private admin
 
 const getUsers = asyncHandler(async (req, res) => {
   //console.log(req)

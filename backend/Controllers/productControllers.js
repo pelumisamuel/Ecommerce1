@@ -87,6 +87,7 @@ export const createProductReview = asyncHandler(async (req, res) => {
 
     await product.save()
     res.status(201).json({ message: 'Review added' })
+    return
   } else {
     res.status(404)
     throw new Error('product not found')
